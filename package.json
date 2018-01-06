@@ -1,6 +1,6 @@
 {
   "name": "ropegulp",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "combination of gulp task",
   "main": "config.js",
   "scripts": {

@@ -9,7 +9,7 @@ npm install ropegulp -g
 
 //use
    //in your dir
-   ...somedir>ropegulp create
+   ...somedir>ropegulp create //will create directory:blt and file:ropegulpfile.js,package.json
    //write your ropegulpfile.js
    //run task
    ...somedir>ropegulp task dev -open
