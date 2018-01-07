@@ -9,7 +9,8 @@ let cwd=process.cwd();
 let normal=(action=[])=>{
 let names=data.get("name");
 let name=names[0];
-let execOut=exec(`node ./blt/gulpfile.js ${name} ${action.join(" ")}`);
+let execOut=exec(`node ./ropegulp/gulpfile.js ${name} ${action.join(" ")}`);
+console.log(chalk.green(`begin in you ${cwd} and run ropegulp directory && ropegulpfile.js`));
 execOut.stdout.on('data',function(data){
   console.log(data)
 })
