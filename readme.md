@@ -10,6 +10,7 @@ npm install ropegulp -g
 //use
    //in your dir
    ...somedir>ropegulp create //will create directory:blt and file:ropegulpfile.js,package.json
+   //npm install   // install local dependencies
    //write your ropegulpfile.js
    //run task
    ...somedir>ropegulp task dev -open
@@ -96,3 +97,7 @@ module.exports = {
 ......>ropegulp task default -open //open browser auto
 
 ```
+
+
+## remark
+* use browsersync to open server
