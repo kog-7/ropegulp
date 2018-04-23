@@ -1,14 +1,14 @@
 {
   "name": "ropegulp",
-  "version": "1.2.3",
-  "description": "combination of gulp task",
+  "version": "1.3.0",
+  "description": "package some projects workflow simple",
   "main": "config.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "gulp task",
-    "ropegulp"
+    "package project",
+    "task"
   ],
   "author": "kog-7",
   "license": "MIT",
@@ -24,6 +24,7 @@
   },
   "devDependencies": {
     "babel-preset-es2015": "^6.24.1",
-    "babelify": "^8.0.0"
+    "babelify": "^8.0.0",
+    "gulp-load-plugins": "^1.5.0"
   }
 }

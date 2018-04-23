@@ -1,11 +1,10 @@
-let cmdParse = require("./lib/cmdParse.js");
+let cmdParse = require("./utils/cmdParse.js");
 
 class Data {
 
   constructor() {
     this.store = {};
   }
-
 
   init(md) {
     //cmdParse的接口输出不太好，data包装一下
@@ -20,12 +19,13 @@ class Data {
       nameType = core.contentType,
       nameContent = core.content;
     Object.assign(this.store, {
-      args,
-      name,
-      type,
+      args,//命令的参数 [{type:'-sac',name:'ab'}]
+      name,//动词作用的 包名字
+      type,//运行动作，比如create
       nameType,
       nameContent
     });
+
   }
 
   get(attr) {

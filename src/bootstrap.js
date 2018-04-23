@@ -6,6 +6,7 @@ module.exports=()=>{
   let type=data.get("type");
   let name=data.get("name");
   let args=data.get("args");
+
   //配置的内容
 for(let i in feature){
   let obj=feature[i];

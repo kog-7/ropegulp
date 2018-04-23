@@ -1,23 +1,29 @@
+
 var flow = {
   action: [
-  {}
+    {}
   ],
   watch: []
 };
 
 
-var map = {
-// pug:[
-  // {src:'./src/pug/index.pug',dist:'./build/index.html',watch:'./src/pug/**/*'}
-// ]
-}
+let map={
+  proj1:[
+    {}
+  ]
+};
 
 
 module.exports = {
   default: {
-    port: 8890,
-    map:map,
-    staticDir:'./build',
-    staticFile:'./index.html'
+    // port: 8880,
+    // staticDir:'./dist',
+    // staticFile:'./index.html',
+    // exec:[
+    //
+    // ],
+    // flow:flow,
+    map:map
+
   }
 }
