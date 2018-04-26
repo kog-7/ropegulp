@@ -1,6 +1,6 @@
 # ropegulp
 
-packaging some projects workflow simple
+package small frontend projects workflow simple
 
 ![](https://img.shields.io/npm/v/ropegulp.svg?style=flat)
 
@@ -9,7 +9,6 @@ packaging some projects workflow simple
 * synchronous or asynchronous packaging project task
 * custom task
 * exec other commands
-
 
 ## Installation
 
@@ -71,8 +70,13 @@ module.exports={
 ## tasks can be used
 
 ```
-["pug", "require", "scss", "copy", "ngHtml", "pool", "watch", "concat", 'typescript','version','markdown','freemarker','sprite',"rollup"];
+"pug", "require", "scss",
+ "copy", "ngHtml", "pool",
+ "watch", "concat", 'typescript',
+ 'version','markdown','freemarker',
+ 'sprite',"rollup"
 ```
+
 
 ## api
 
@@ -112,7 +116,6 @@ task1:{
 }
 
 ```
-
 
 
 ## task&&argument
@@ -182,7 +185,8 @@ argument
 
 ```
 argument:{
-  alias:{..}//optional,see rollup-plugin-alias config
+  alias:{..},//optional,see rollup-plugin-alias config
+  rollup:{..},//optional,see rollup config
   commonjs:{..},//optional,see rollup-plugin-commonjs config
   uglify:{..},//optional,see rollup-plugin-uglify config
   resolve:{..},//optional,see rollup-plugin-node-resolve config

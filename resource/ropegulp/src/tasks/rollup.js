@@ -31,8 +31,13 @@ let run = function(opt) {
 
     let plugins=[
       builtins(),
-      rollupResolve(resolveArg),
-      rollupCommonjs(commonjs)
+      rollupResolve(Object.assign({
+        main:true,
+        browser:true
+      },resolveArg)),
+      rollupCommonjs(Object.assign({
+          include: 'node_modules/**'
+      },commonjs))
     ];
     if(alias){
       plugins.push(aliasPlugin(alias));
@@ -46,12 +51,12 @@ let run = function(opt) {
       input: src,
       plugins: plugins
     }).then(bundle => {
-      return bundle.write({
+      return bundle.write(Object.assign({
         file: distFile,
         format: 'umd',
         name: 'library',
         sourcemap: true
-      });
+      },coreArg));
     }).then(function(){
       if (reload && browser) {
         browser.reload();
