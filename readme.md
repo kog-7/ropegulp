@@ -17,7 +17,8 @@ package small frontend projects workflow simple
 npm install ropegulp -g
 
 //use
-...somedir>ropegulp create //create scaffolding files
+...somedir>ropegulp create proj1 //create scaffolding files in proj1 dir
+...somedir>ropegulp create //create scaffolding files in the current dir
 ...somedir>npm install //install deps
 ...somedir>ropegulp task task1 -open //run dev task1 and open the browser
 ...somedir>ropegulp task task2 //run task2 task

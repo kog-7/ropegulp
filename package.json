@@ -1,6 +1,6 @@
 {
   "name": "ropegulp",
-  "version": "1.3.1",
+  "version": "1.3.3",
   "description": "package small frontend projects workflow simple",
   "main": "config.js",
   "scripts": {
@@ -23,8 +23,6 @@
     "gulp": "^3.9.1"
   },
   "devDependencies": {
-    "babel-preset-es2015": "^6.24.1",
-    "babelify": "^8.0.0",
-    "gulp-load-plugins": "^1.5.0"
+
   }
 }
