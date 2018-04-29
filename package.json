@@ -17,12 +17,12 @@
     "url": "git+https://github.com/kog-7/ropegulp.git"
   },
   "bin": {
-    "ropegulp": "indexBin.js"
+    "ropegulp": "./bin/ropegulp.js"
   },
   "dependencies": {
     "gulp": "^3.9.1"
   },
-  "devDependencies": {
-
-  }
+  "devDependencies": {},
+  "_from": "ropegulp@1.3.3",
+  "_resolved": "http://registry.npm.taobao.org/ropegulp/download/ropegulp-1.3.3.tgz"
 }
