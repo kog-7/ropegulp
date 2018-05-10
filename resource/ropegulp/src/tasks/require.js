@@ -17,7 +17,7 @@ return new Promise(function(resolve,reject){
   .pipe($$.plumber(function(err){
     reject(JSON.stringify(err));
   }))
-  .pipe($$.sourcemaps.init())
+  // .pipe($$.sourcemaps.init())
   .pipe($$.requirejsOptimize(coreArg)
   ;
 
@@ -42,5 +42,5 @@ return new Promise(function(resolve,reject){
   })
 };
 
-run.argument=['mainConfigFile','optimize'];
+
 run.plugins = ['uglify', 'rename'];

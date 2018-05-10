@@ -1,4 +1,4 @@
 let configUrl = "../ropegulpfile.js";
 let configObj = require(configUrl);
-let run = require("./index");
-run.gulp(configObj, configUrl);
+let logicStart = require("./index");
+logicStart.run(configObj.tasks, configUrl);

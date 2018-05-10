@@ -67,7 +67,7 @@ let run = function(opt) {
   });
 };
 
-run.plugins = ['uglify', 'rename'];
+run.plugins = [];
 
 // run.
 module.exports = run;

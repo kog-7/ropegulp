@@ -5,7 +5,7 @@ let taskName = args[2];
 let taskArg = args.slice(3);
 let chalk = require("chalk");
 
-let feature = ["rollup","pug", "require", "scss", "copy", "ngHtml", "pool", "watch", "concat", 'typescript','version','markdown','freemarker','sprite'];
+let feature = ["rollup","pug", "require", "scss", "copy", "ngHtml", "pool", "watch", "concat", 'typescript','version','markdown','freemarker','sprite','inject'];
 
 class Data {
   constructor() {

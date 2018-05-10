@@ -1,6 +1,6 @@
 {
   "name": "ropegulp",
-  "version": "1.3.3",
+  "version": "1.3.4",
   "description": "package small frontend projects workflow simple",
   "main": "config.js",
   "scripts": {

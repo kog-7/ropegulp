@@ -23,9 +23,6 @@ function(file,enc,cb){
     content=new Buffer(content);
     file.contents=Buffer.concat([content]);
     this.push(file);
-
-
-
     cb(null,file);
 }
 )

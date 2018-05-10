@@ -29,7 +29,7 @@ let run = function(opt) {
         reject(JSON.stringify(err));
       }))
       .pipe($$.sass(argument[engine]))
-      .pipe($$.sourcemaps.init())
+      // .pipe($$.sourcemaps.init())
       .pipe($$.autoprefixer());
 
     run.plugins.forEach(function(plugin, ind) {

@@ -8,16 +8,13 @@ module.exports=()=>{
   let args=data.get("args");
 
   //配置的内容
-for(let i in feature){
-  let obj=feature[i];
-  let {name,cmd}=obj;
-  if(cmd.test(type)&&(name in action)){
+  for(let i in feature){
+    let obj=feature[i];
+    let {name,cmd}=obj;
+    if(cmd.test(type)&&(name in action)){
       action[name]();
+    }
   }
-}
-
-
-
 
 
 }

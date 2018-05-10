@@ -45,6 +45,30 @@ var typeHim = function(dm) {
   }
 };
 
+var emptyObject=function(obj){
+  let keys=Object.keys(obj);
+  if(keys.length===0){return true;}
+  else{return false;}
+};
+
+let getPx=function(val){
+  let prefix='px';
+  let ind=val.indexOf(prefix);
+  if(ind===-1){
+    return val;
+  }
+  else{
+    return val.slice(0,ind);
+  }
+};
+
+let multiPx=function(val,scale){
+let newVal=getPx(val);
+return (newVal*scale)+'px';
+};
+
+
+
 var getPath = function(url) {
   if (typeof url !== "string") {
     return url;
@@ -181,10 +205,13 @@ module.exports = {
   coverExtend,
   // branch,
   typeHim,
+  getPx,
+  multiPx,
   getPath,
   setPaths,
   Branch,
   basePath,
   cwd,
-  collect
+  collect,
+  emptyObject
 }

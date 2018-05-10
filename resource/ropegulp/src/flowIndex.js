@@ -1,10 +1,10 @@
 var cwd = process.cwd();
 var path = require("path");
-var gulp = require("gulp");
+
 var fs = require("fs-extra");
 var utils = require("./utils.js");
 let data = require("../data.js");
-
+let gulp=require('gulp');
 let abilityList = {};
 
 

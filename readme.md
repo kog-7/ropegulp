@@ -1,6 +1,6 @@
 # ropegulp
 
-package small frontend projects workflow simple
+package small frontend project and inject into other project simple
 
 ![](https://img.shields.io/npm/v/ropegulp.svg?style=flat)
 
@@ -17,9 +17,8 @@ package small frontend projects workflow simple
 npm install ropegulp -g
 
 //use
-...somedir>ropegulp create proj1 //create scaffolding files in proj1 dir
-...somedir>ropegulp create //create scaffolding files in the current dir
-...somedir>npm install //install deps
+...somedir>ropegulp create proj1 //create scaffolding files in proj1 dir and install dependencies
+...somedir>ropegulp create //create scaffolding files in the current dir and install dependencies
 ...somedir>ropegulp task task1 -open //run dev task1 and open the browser
 ...somedir>ropegulp task task2 //run task2 task
 ```
@@ -41,27 +40,25 @@ let flow=[
 ];
 
 //run all command at same time
-let map={
-  proj1:[
+let proj1:[
   {engine:'scss',src:'./src/scss/index.scs',dist:'./dist/styles/css',watch:'./src/scss/**/*',argument:{reload:true}},//update and refresh browser
-  {engine:'sprite',src:'./src/images/*',dist:'./dist/images'},//create sprite image
-  ],
-  proj2:[
-  {engine:'pool',src:'./src/scripts/index.js',dist:'./dist/scripts',....}
-  ]
-};
+  {engine:'sprite',src:'./src/images/*',dist:'./dist/images',argument:{sprite:{scale:0.5}}},//create sprite image
+  ];
 
-
+//browser arguments use browser-sync browser option
 module.exports={
   task1:{
-    map,//optional,map tasks
-    flow,//optional,flow tasks
-    port:8889,//optional
-    staticDir:'./dist',//optional,open browser root dir ,need define port
-    staticFile:'./index.html',//optional,open browser file,need define port
+    browser:{//optional
+      port:8899,
+      server:{
+        index:'index.html',
+        baseDir:'./dist'
+      }
+    },
+    map:proj1,//optional,map tasks
     exec:[
     {cmd:'webpack',dir:'./somedir'}//run webpack at the same time in dir somedir
-    ],
+    ]
   }
 }
 
@@ -71,7 +68,7 @@ module.exports={
 ## tasks can be used
 
 ```
-"pug", "require", "scss",
+"inject","pug", "require", "scss",
  "copy", "ngHtml", "pool",
  "watch", "concat", 'typescript',
  'version','markdown','freemarker',
@@ -79,7 +76,9 @@ module.exports={
 ```
 
 
-## api
+## ropegulpfile.js
+
+browser option use browsersync option ,[browsersync option](http://www.browsersync.cn/docs/options/)
 
 ```
 // engine use the above tasks
@@ -87,10 +86,12 @@ module.exports={
 //dist use task dist dir path
 //watch
 //argument is write in ## task&&argument
-let map={
-  proj1:[
+let proj1=[
   {engine:'pug',src:'./src/pug/index.pug',watch:'./src/pug/**/*',argument:{rename:'',reload:true,htmlmin:{}}}
-  ]
+  ];
+let allProj={
+  proj1,
+  proj2:[....]
 }
 
 //flow task is same as map,just run process are different
@@ -104,7 +105,7 @@ let flow =[
 
 module.exports={
 task1:{
-  map:somemap,//optional,map tasks
+  map:proj1,//optional,map tasks
   flow:someflow,//optional,flow tasks
   port:8909,//optional
   staticDir:'someRootDir',//optional,browser read root dir
@@ -112,6 +113,11 @@ task1:{
   exec:[//optional
     {cmd:'npm start',dir:'../dir1/dir2'}//run cmd in somedir
   ]
+},
+task2:{
+  ...
+  map:proj2,
+  ....
 }
 
 }
@@ -125,6 +131,29 @@ task1:{
 
 #### general argument
 argument:{reload:true} //refresh browser if setting port&&file&dir in ropegulpfile
+
+#### inject ,inject current project files to other part of project file
+* core lib:built-in
+* lib: [gulp-rename](https://www.npmjs.com/package/gulp-rename)
+
+argument&&use
+
+```
+//default reg value is /\?ropegulp\?/gm
+{engine:'inject',src:'./proj1/dist/a.js',dist:'./java-proj/static',watch:'./proj1/dist/a.js',argument:{from:'./java-proj/static/all.template.js',reg:/\?ropegulp\?/gm,rename:'all.js'}}
+
+//./proj1/dist/a.js
+//  var a=1;b=1;
+
+//./java-proj/static/all.template.js
+//    function abc(){}  ?ropegulp?   function cde(){}
+
+//output in ./java-proj/static/all.js
+//function abc(){} var a=1;b=1; function cde(){}
+
+```
+
+
 
 #### scss task,scss file
 
@@ -142,6 +171,27 @@ argument:{
 }
 ```
 
+#### sprite task,image file
+
+* core lib: [gulp.spritesmith](https://www.npmjs.com/package/gulp.spritesmith)
+* lib: [gulp.spritesmith](https://www.npmjs.com/package/gulp.spritesmith),[gulp-imagemin](https://www.npmjs.com/package/gulp-imagemin)
+
+argument:
+
+```
+argument:{
+  sprite:{
+    scale:0.5,//optional,default is 1,scale sprite
+    prefix:'sprite',//option define prefix name in .sprite-back{width:100px;}
+    imgName:'sprite.png',
+    cssName='sprite.css'
+    },
+  imagemin:{..}//optional,see gulp-imagemin config
+  rename:{..},//optional,see gulp-rename config
+  reload:true//optional
+}
+
+```
 
 #### pug task,pug file
 
@@ -160,21 +210,7 @@ argument:{
 ```
 
 
-#### pool task,html/css/js file
 
-* core lib: [gulp-pool](https://www.npmjs.com/package/gulp-pool)
-* lib: [gulp-pool](https://www.npmjs.com/package/gulp-pool),[gulp-rename](https://www.npmjs.com/package/gulp-rename),[gulp-uglify](https://www.npmjs.com/package/gulp-uglify)
-
-argument:
-
-```
-argument:{
-  pool:{..}//optional,see gulp-pool config
-  rename:{..},//optional,see gulp-rename config
-  uglify:{..},//optional,see gulp-uglify config,
-  reload:true//optional
-}
-```
 
 
 #### rollup task,js file
@@ -208,6 +244,23 @@ argument:{
   reload:true//optional
 }
 
+```
+
+
+#### pool task,html/css/js file
+
+* core lib: [gulp-pool](https://www.npmjs.com/package/gulp-pool)
+* lib: [gulp-pool](https://www.npmjs.com/package/gulp-pool),[gulp-rename](https://www.npmjs.com/package/gulp-rename),[gulp-uglify](https://www.npmjs.com/package/gulp-uglify)
+
+argument:
+
+```
+argument:{
+  pool:{..}//optional,see gulp-pool config
+  rename:{..},//optional,see gulp-rename config
+  uglify:{..},//optional,see gulp-uglify config,
+  reload:true//optional
+}
 ```
 
 #### version task,add version in html/js/css,like src="./...js?v=xxx"
@@ -304,24 +357,6 @@ argument:{
   rename:{..},//optional,see gulp-rename config
   reload:true//optional
 }
-```
-
-
-#### sprite task,image file
-
-* core lib: [gulp.spritesmith](https://www.npmjs.com/package/gulp.spritesmith)
-* lib: [gulp.spritesmith](https://www.npmjs.com/package/gulp.spritesmith),[gulp-imagemin](https://www.npmjs.com/package/gulp-imagemin)
-
-argument:
-
-```
-argument:{
-  sprite:{..}//optional,see gulp.spritesmith config
-  imagemin:{..}//optional,see gulp-imagemin config
-  rename:{..},//optional,see gulp-rename config
-  reload:true//optional
-}
-
 ```
 
 
